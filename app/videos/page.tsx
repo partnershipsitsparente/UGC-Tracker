@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useAuth } from "@/components/AuthProvider";
 import VideoRow from "@/components/VideoRow";
+import TikTokConnect from "@/components/TikTokConnect";
 
 type Video = {
   id: string;
@@ -82,6 +83,10 @@ export default function VideosPage() {
 
   return (
     <>
+      <Suspense fallback={null}>
+        <TikTokConnect onSynced={load} />
+      </Suspense>
+
       <div className="section-heading">
         <h2>Add a video</h2>
       </div>
