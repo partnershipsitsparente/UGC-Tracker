@@ -11,10 +11,13 @@ export async function GET(req: NextRequest) {
   }
 
   const snap = await adminDb.collection("followerSnapshots").orderBy("recordedAt", "desc").get();
-  const snapshots = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  const snapshots = snap.docs.map((doc) => {
+    const data = doc.data() as { platform: string; count: number; recordedAt: string };
+    return { id: doc.id, platform: data.platform, count: data.count, recordedAt: data.recordedAt };
+  });
 
   const latestByPlatform: Record<string, number> = {};
-  for (const s of snapshots as { platform: string; count: number }[]) {
+  for (const s of snapshots) {
     if (latestByPlatform[s.platform] === undefined) latestByPlatform[s.platform] = s.count;
   }
 
