@@ -8,14 +8,15 @@ import VideoRow from "@/components/VideoRow";
 import FollowerForm from "@/components/FollowerForm";
 import { useAuth } from "@/components/AuthProvider";
 
-type Video = { id: string; platform: string; views: number; likes: number; comments: number; postedAt: string | null; brand: string | null; caption: string | null };
+type Video = { id: string; platform: string; views: number; likes: number; comments: number; postedAt: string | null; brand: string | null; caption: string | null; tiktokAccountName?: string | null };
 type Payment = { id: string; brand: string; amount: number; status: string; dueDate: string | null; paidDate: string | null; notes: string | null };
+type FollowerStat = { platform: string; accountId: string | null; accountName: string | null; count: number };
 
 export default function OverviewPage() {
   const { authedFetch } = useAuth();
   const [videos, setVideos] = useState<Video[]>([]);
   const [payments, setPayments] = useState<Payment[]>([]);
-  const [followers, setFollowers] = useState<Record<string, number>>({});
+  const [followers, setFollowers] = useState<FollowerStat[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -64,12 +65,14 @@ export default function OverviewPage() {
         </div>
       </div>
 
-      {Object.keys(followers).length > 0 && (
+      {followers.length > 0 && (
         <div className="stat-row">
-          {Object.entries(followers).map(([platform, count]) => (
-            <div className="stat-cell" key={platform}>
-              <div className="stat-label">{PLATFORM_LABEL[platform]} followers</div>
-              <div className="stat-number">{formatCompactNumber(count)}</div>
+          {followers.map((f) => (
+            <div className="stat-cell" key={`${f.platform}:${f.accountId || "manual"}`}>
+              <div className="stat-label">
+                {f.accountName ? `${f.accountName} (${PLATFORM_LABEL[f.platform]})` : `${PLATFORM_LABEL[f.platform]} followers`}
+              </div>
+              <div className="stat-number">{formatCompactNumber(f.count)}</div>
             </div>
           ))}
         </div>

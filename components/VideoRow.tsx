@@ -9,15 +9,18 @@ type Video = {
   views: number;
   likes: number;
   comments: number;
+  tiktokAccountName?: string | null;
 };
 
 export default function VideoRow({ video, onDelete }: { video: Video; onDelete?: (id: string) => void }) {
+  const subline = video.tiktokAccountName || video.brand || "No brand tagged";
+
   return (
     <div className="video-row">
       <span className="platform-tag">{PLATFORM_LABEL[video.platform] || video.platform}</span>
       <div className="video-meta">
         <div className="video-brand">
-          {video.brand || "No brand tagged"} · {formatDate(video.postedAt)}
+          {subline} · {formatDate(video.postedAt)}
         </div>
         <div className="video-caption">{video.caption || "Untitled video"}</div>
       </div>

@@ -16,6 +16,7 @@ type Video = {
   likes: number;
   comments: number;
   shares: number;
+  tiktokAccountName?: string | null;
 };
 
 const EMPTY_FORM = {

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { adminDb } from "@/lib/firebaseAdmin";
 import { requireUser, AuthError } from "@/lib/authServer";
+import { listTikTokAccounts } from "@/lib/tiktok";
 
 export async function GET(req: NextRequest) {
   try {
@@ -10,9 +10,9 @@ export async function GET(req: NextRequest) {
     throw e;
   }
 
-  const tiktokDoc = await adminDb.collection("integrations").doc("tiktok").get();
+  const accounts = await listTikTokAccounts();
 
   return NextResponse.json({
-    tiktok: tiktokDoc.exists,
+    tiktokAccounts: accounts.map((a) => ({ openId: a.openId, username: a.username, connectedAt: a.connectedAt })),
   });
 }

@@ -47,6 +47,15 @@ type TokenResponse = {
   token_type: string;
 };
 
+export type TikTokAccount = {
+  openId: string;
+  username: string;
+  accessToken: string;
+  refreshToken: string;
+  expiresAt: number;
+  connectedAt: string;
+};
+
 export async function exchangeCodeForToken(code: string, redirectUri: string, codeVerifier: string) {
   const res = await fetch(TOKEN_URL, {
     method: "POST",
@@ -87,29 +96,66 @@ export async function refreshTikTokToken(refreshToken: string) {
   return data as TokenResponse;
 }
 
-export async function saveTikTokTokens(tokens: TokenResponse) {
-  await adminDb
-    .collection("integrations")
-    .doc("tiktok")
-    .set({
-      accessToken: tokens.access_token,
-      refreshToken: tokens.refresh_token,
-      openId: tokens.open_id,
-      expiresAt: Date.now() + tokens.expires_in * 1000,
-      connectedAt: new Date().toISOString(),
+async function fetchUsername(accessToken: string): Promise<string> {
+  try {
+    const res = await fetch("https://open.tiktokapis.com/v2/user/info/?fields=display_name", {
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
+    const data = await res.json();
+    return data?.data?.user?.display_name || "Connected account";
+  } catch {
+    return "Connected account";
+  }
 }
 
-export async function getValidTikTokAccessToken(): Promise<string | null> {
-  const doc = await adminDb.collection("integrations").doc("tiktok").get();
+// Each connected TikTok account gets its own doc, keyed by TikTok's open_id,
+// so multiple accounts can be connected and synced independently.
+export async function saveTikTokAccount(tokens: TokenResponse) {
+  const username = await fetchUsername(tokens.access_token);
+
+  await adminDb
+    .collection("tiktokAccounts")
+    .doc(tokens.open_id)
+    .set(
+      {
+        openId: tokens.open_id,
+        username,
+        accessToken: tokens.access_token,
+        refreshToken: tokens.refresh_token,
+        expiresAt: Date.now() + tokens.expires_in * 1000,
+        connectedAt: new Date().toISOString(),
+      },
+      { merge: true }
+    );
+}
+
+export async function listTikTokAccounts(): Promise<TikTokAccount[]> {
+  const snap = await adminDb.collection("tiktokAccounts").get();
+  return snap.docs.map((d) => d.data() as TikTokAccount);
+}
+
+export async function removeTikTokAccount(openId: string) {
+  await adminDb.collection("tiktokAccounts").doc(openId).delete();
+}
+
+// Returns a valid access token for one account, refreshing it first if it's
+// about to expire.
+export async function getValidAccessTokenFor(openId: string): Promise<string | null> {
+  const doc = await adminDb.collection("tiktokAccounts").doc(openId).get();
   if (!doc.exists) return null;
 
-  const data = doc.data() as { accessToken: string; refreshToken: string; expiresAt: number };
+  const data = doc.data() as TikTokAccount;
 
-  // Refresh if the token expires within the next 5 minutes.
   if (Date.now() > data.expiresAt - 5 * 60 * 1000) {
     const refreshed = await refreshTikTokToken(data.refreshToken);
-    await saveTikTokTokens(refreshed);
+    await adminDb
+      .collection("tiktokAccounts")
+      .doc(openId)
+      .update({
+        accessToken: refreshed.access_token,
+        refreshToken: refreshed.refresh_token,
+        expiresAt: Date.now() + refreshed.expires_in * 1000,
+      });
     return refreshed.access_token;
   }
 

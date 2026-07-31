@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { exchangeCodeForToken, saveTikTokTokens } from "@/lib/tiktok";
+import { exchangeCodeForToken, saveTikTokAccount } from "@/lib/tiktok";
 
 export async function GET(req: NextRequest) {
   const code = req.nextUrl.searchParams.get("code");
@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
   try {
     const redirectUri = `${req.nextUrl.origin}/api/auth/tiktok/callback`;
     const tokens = await exchangeCodeForToken(code, redirectUri, codeVerifier);
-    await saveTikTokTokens(tokens);
+    await saveTikTokAccount(tokens);
   } catch (e) {
     const message = e instanceof Error ? e.message : "unknown_error";
     return NextResponse.redirect(`${req.nextUrl.origin}/videos?tiktok_error=${encodeURIComponent(message)}`);
