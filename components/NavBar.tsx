@@ -17,7 +17,7 @@ export default function NavBar() {
   return (
     <div className="topnav">
       <div className="wordmark">
-        UGC<span>Ledger</span>
+        UGC<span>Tracker</span>
       </div>
       <div className="navlinks">
         {LINKS.map((link) => (

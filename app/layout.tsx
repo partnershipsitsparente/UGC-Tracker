@@ -2,7 +2,7 @@ import "./globals.css";
 import AppFrame from "@/components/AppFrame";
 
 export const metadata = {
-  title: "UGC Ledger",
+  title: "UGC Tracker",
   description: "Track views, followers, and payouts across your UGC content.",
 };
 

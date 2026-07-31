@@ -27,7 +27,7 @@ export default function LoginForm() {
     <div className="login-shell">
       <form className="login-card" onSubmit={handleSubmit}>
         <h1>
-          UGC<span style={{ color: "var(--accent)" }}>Ledger</span>
+          UGC<span style={{ color: "var(--accent)" }}>Tracker</span>
         </h1>
         <div className="field" style={{ marginBottom: 14 }}>
           <label htmlFor="email">Email</label>
