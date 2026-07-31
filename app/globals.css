@@ -1,16 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
 
 :root {
-  --bg: #111113;
-  --surface: #19191c;
-  --surface-raised: #212125;
-  --border: #2b2b30;
-  --text: #f2f2ee;
-  --text-muted: #8c8c94;
-  --accent: #c6ff3d;
-  --accent-dim: #8fb82c;
-  --alert: #ff4d6d;
-  --alert-dim: #7a2a36;
+  --bg: #faf9f7;
+  --surface: #ffffff;
+  --surface-raised: #f4f3f0;
+  --border: #e7e5e0;
+  --text: #18181a;
+  --text-muted: #78766f;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-soft: #eef0ff;
+  --success: #15803d;
+  --pending: #b45309;
+  --alert: #dc2626;
   --font-display: "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
@@ -77,6 +79,7 @@ button {
 
 .navlinks {
   display: flex;
+  align-items: center;
   gap: 24px;
   font-size: 14px;
 }
@@ -86,6 +89,11 @@ button {
   color: var(--text-muted);
   padding-bottom: 4px;
   border-bottom: 2px solid transparent;
+  transition: color 0.15s;
+}
+
+.navlinks a:hover {
+  color: var(--text);
 }
 
 .navlinks a.active {
@@ -99,6 +107,8 @@ button {
   gap: 1px;
   background: var(--border);
   border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
   margin-bottom: 40px;
 }
 
@@ -117,14 +127,14 @@ button {
 
 .stat-number {
   font-family: var(--font-display);
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1;
 }
 
 .stat-number.accent {
-  color: var(--accent);
+  color: var(--success);
 }
 
 .section-heading {
@@ -143,31 +153,39 @@ button {
 
 .btn {
   background: var(--accent);
-  color: #111113;
+  color: #ffffff;
   border: none;
   padding: 10px 18px;
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: 8px;
+  transition: background 0.15s;
 }
 
 .btn:hover {
-  background: #d7ff70;
+  background: var(--accent-hover);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
 }
 
 .btn-ghost {
-  background: transparent;
+  background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text);
   padding: 9px 16px;
   font-size: 14px;
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: 8px;
+  transition: border-color 0.15s, color 0.15s;
 }
 
 .btn-ghost:hover {
   border-color: var(--accent);
+  color: var(--accent);
 }
 
 .btn-danger {
@@ -191,6 +209,8 @@ button {
   gap: 1px;
   background: var(--border);
   border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
   margin-bottom: 48px;
 }
 
@@ -209,8 +229,9 @@ button {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   padding: 4px 8px;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
   text-align: center;
   width: fit-content;
 }
@@ -249,6 +270,8 @@ button {
 .ledger {
   border: 1px solid var(--border);
   background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
   margin-bottom: 48px;
 }
 
@@ -287,41 +310,42 @@ button {
 .ledger-amount {
   font-family: var(--font-mono);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
 }
 
 .stamp {
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 5px 10px;
-  border: 1.5px solid currentColor;
-  border-radius: 3px;
+  border-radius: 999px;
   white-space: nowrap;
-  transform: rotate(-2deg);
   display: inline-block;
 }
 
 .stamp.paid {
-  color: var(--accent);
+  color: var(--success);
+  background: #eafaf0;
 }
 
 .stamp.pending {
-  color: #d8d84a;
-  border-style: dashed;
+  color: var(--pending);
+  background: #fef3e0;
 }
 
 .stamp.overdue {
   color: var(--alert);
+  background: #fdecec;
 }
 
 /* Forms */
 .panel {
   border: 1px solid var(--border);
   background: var(--surface);
+  border-radius: 12px;
   padding: 24px;
   margin-bottom: 40px;
 }
@@ -346,13 +370,13 @@ button {
 .field select,
 .field textarea {
   width: 100%;
-  background: var(--surface-raised);
+  background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text);
   padding: 9px 10px;
   font-size: 14px;
   font-family: var(--font-body);
-  border-radius: 2px;
+  border-radius: 8px;
 }
 
 .field input:focus,
@@ -367,6 +391,7 @@ button {
   text-align: center;
   color: var(--text-muted);
   border: 1px dashed var(--border);
+  border-radius: 12px;
   font-size: 14px;
   margin-bottom: 40px;
 }
@@ -383,13 +408,16 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--bg);
 }
 
 .login-card {
   width: 320px;
   border: 1px solid var(--border);
   background: var(--surface);
+  border-radius: 16px;
   padding: 28px;
+  box-shadow: 0 8px 32px rgba(20, 20, 15, 0.06);
 }
 
 .login-card h1 {
