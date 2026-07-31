@@ -1,11 +1,19 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { AuthProvider, useAuth } from "./AuthProvider";
 import NavBar from "./NavBar";
 import LoginForm from "./LoginForm";
 
+const PUBLIC_PATHS = ["/terms", "/privacy"];
+
 function Gate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
+  const pathname = usePathname();
+
+  if (PUBLIC_PATHS.includes(pathname)) {
+    return <>{children}</>;
+  }
 
   if (loading) {
     return (
