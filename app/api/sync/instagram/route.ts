@@ -27,7 +27,7 @@ async function fetchAllMedia(accessToken: string): Promise<{ media: IgMedia[]; e
   let pages = 0;
 
   while (url && pages < 10) {
-    const res = await fetch(url);
+    const res: Response = await fetch(url);
     const data = await res.json();
 
     if (!res.ok || data.error) {
