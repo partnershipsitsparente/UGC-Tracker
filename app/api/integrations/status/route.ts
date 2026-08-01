@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireUser, AuthError } from "@/lib/authServer";
 import { listTikTokAccounts } from "@/lib/tiktok";
+import { listInstagramAccounts } from "@/lib/instagram";
 
 export async function GET(req: NextRequest) {
   try {
@@ -10,9 +11,10 @@ export async function GET(req: NextRequest) {
     throw e;
   }
 
-  const accounts = await listTikTokAccounts();
+  const [tiktokAccounts, instagramAccounts] = await Promise.all([listTikTokAccounts(), listInstagramAccounts()]);
 
   return NextResponse.json({
-    tiktokAccounts: accounts.map((a) => ({ openId: a.openId, username: a.username, connectedAt: a.connectedAt })),
+    tiktokAccounts: tiktokAccounts.map((a) => ({ openId: a.openId, username: a.username, connectedAt: a.connectedAt })),
+    instagramAccounts: instagramAccounts.map((a) => ({ userId: a.userId, username: a.username, connectedAt: a.connectedAt })),
   });
 }

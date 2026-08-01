@@ -8,7 +8,7 @@ import VideoRow from "@/components/VideoRow";
 import FollowerForm from "@/components/FollowerForm";
 import { useAuth } from "@/components/AuthProvider";
 
-type Video = { id: string; platform: string; views: number; likes: number; comments: number; postedAt: string | null; brand: string | null; caption: string | null; tiktokAccountName?: string | null };
+type Video = { id: string; platform: string; views: number; likes: number; comments: number; postedAt: string | null; brand: string | null; caption: string | null; tiktokAccountName?: string | null; instagramAccountName?: string | null };
 type Payment = { id: string; brand: string; amount: number; status: string; dueDate: string | null; paidDate: string | null; notes: string | null };
 type FollowerStat = { platform: string; accountId: string | null; accountName: string | null; count: number };
 

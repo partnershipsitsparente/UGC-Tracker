@@ -10,10 +10,11 @@ type Video = {
   likes: number;
   comments: number;
   tiktokAccountName?: string | null;
+  instagramAccountName?: string | null;
 };
 
 export default function VideoRow({ video, onDelete }: { video: Video; onDelete?: (id: string) => void }) {
-  const subline = video.tiktokAccountName || video.brand || "No brand tagged";
+  const subline = video.tiktokAccountName || video.instagramAccountName || video.brand || "No brand tagged";
 
   return (
     <div className="video-row">

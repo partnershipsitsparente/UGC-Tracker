@@ -4,6 +4,7 @@ import { useEffect, useState, Suspense } from "react";
 import { useAuth } from "@/components/AuthProvider";
 import VideoRow from "@/components/VideoRow";
 import TikTokConnect from "@/components/TikTokConnect";
+import InstagramConnect from "@/components/InstagramConnect";
 
 type Video = {
   id: string;
@@ -17,6 +18,7 @@ type Video = {
   comments: number;
   shares: number;
   tiktokAccountName?: string | null;
+  instagramAccountName?: string | null;
 };
 
 const EMPTY_FORM = {
@@ -86,6 +88,7 @@ export default function VideosPage() {
     <>
       <Suspense fallback={null}>
         <TikTokConnect onSynced={load} />
+        <InstagramConnect onSynced={load} />
       </Suspense>
 
       <div className="section-heading">
