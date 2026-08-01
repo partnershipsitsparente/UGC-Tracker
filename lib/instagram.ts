@@ -16,7 +16,7 @@ export function buildAuthUrl({ redirectUri, state }: { redirectUri: string; stat
   return `${AUTH_URL}?${params.toString()}`;
 }
 
-type ShortLivedTokenResponse = { access_token: string; user_id: string; permissions?: string[] };
+type ShortLivedTokenResponse = { access_token: string; user_id: string; permissions?: string };
 type LongLivedTokenResponse = { access_token: string; token_type: string; expires_in: number };
 
 export async function exchangeCodeForToken(code: string, redirectUri: string) {
@@ -29,11 +29,17 @@ export async function exchangeCodeForToken(code: string, redirectUri: string) {
   });
 
   const res = await fetch(TOKEN_URL, { method: "POST", body });
-  const data = await res.json();
-  if (!res.ok || data.error_message) {
-    throw new Error(data.error_message || "Instagram token exchange failed");
+  const json = await res.json();
+  if (!res.ok || json.error_message) {
+    throw new Error(json.error_message || "Instagram token exchange failed");
   }
-  return data as ShortLivedTokenResponse;
+
+  // Instagram wraps this response in a `data` array: { data: [{ access_token, user_id, permissions }] }
+  const entry = Array.isArray(json.data) ? json.data[0] : json;
+  if (!entry?.user_id || !entry?.access_token) {
+    throw new Error("Instagram token exchange returned an unexpected response shape");
+  }
+  return entry as ShortLivedTokenResponse;
 }
 
 export async function exchangeForLongLivedToken(shortLivedToken: string) {
