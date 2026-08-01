@@ -14,6 +14,46 @@ type TikTokVideo = {
   share_count?: number;
 };
 
+// TikTok's video.list endpoint caps each response at 20 videos and returns
+// a cursor + has_more flag for pagination. This follows that cursor until
+// every video has been fetched (capped at 10 pages / 200 videos as a safety
+// limit against runaway loops).
+async function fetchAllTikTokVideos(accessToken: string): Promise<{ videos: TikTokVideo[]; error?: string }> {
+  const videos: TikTokVideo[] = [];
+  let cursor: number | undefined;
+  let hasMore = true;
+  let pages = 0;
+
+  while (hasMore && pages < 10) {
+    const body: Record<string, unknown> = { max_count: 20 };
+    if (cursor !== undefined) body.cursor = cursor;
+
+    const res = await fetch(
+      "https://open.tiktokapis.com/v2/video/list/?fields=id,title,share_url,cover_image_url,view_count,like_count,comment_count,share_count",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    );
+    const data = await res.json();
+
+    if (!res.ok || data.error?.code !== "ok") {
+      return { videos, error: data.error?.message || "Failed to fetch videos" };
+    }
+
+    videos.push(...(data.data?.videos || []));
+    hasMore = !!data.data?.has_more;
+    cursor = data.data?.cursor;
+    pages++;
+  }
+
+  return { videos };
+}
+
 export async function POST(req: NextRequest) {
   try {
     await requireUser(req);
@@ -37,31 +77,14 @@ export async function POST(req: NextRequest) {
     }
 
     try {
-      // 1. Pull this account's video list.
-      const videoRes = await fetch(
-        "https://open.tiktokapis.com/v2/video/list/?fields=id,title,share_url,cover_image_url,view_count,like_count,comment_count,share_count",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ max_count: 20 }),
-        }
-      );
-      const videoData = await videoRes.json();
+      // 1. Pull this account's full video list (across all pages).
+      const { videos, error: videosError } = await fetchAllTikTokVideos(accessToken);
 
-      if (!videoRes.ok || videoData.error?.code !== "ok") {
-        results.push({
-          username: account.username,
-          syncedVideos: 0,
-          followerCount: null,
-          error: videoData.error?.message || "Failed to fetch videos",
-        });
+      if (videosError && videos.length === 0) {
+        results.push({ username: account.username, syncedVideos: 0, followerCount: null, error: videosError });
         continue;
       }
 
-      const videos: TikTokVideo[] = videoData.data?.videos || [];
       let synced = 0;
 
       for (const v of videos) {
