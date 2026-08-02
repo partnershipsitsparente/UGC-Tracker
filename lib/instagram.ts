@@ -30,7 +30,6 @@ export async function exchangeCodeForToken(code: string, redirectUri: string) {
 
   const res = await fetch(TOKEN_URL, { method: "POST", body });
   const json = await res.json();
-  console.log("Instagram code->token response:", JSON.stringify(json));
   if (!res.ok || json.error_message) {
     throw new Error(json.error_message || "Instagram token exchange failed");
   }
@@ -40,7 +39,9 @@ export async function exchangeCodeForToken(code: string, redirectUri: string) {
   if (!entry?.user_id || !entry?.access_token) {
     throw new Error("Instagram token exchange returned an unexpected response shape: " + JSON.stringify(json));
   }
-  return entry as ShortLivedTokenResponse;
+  // Instagram returns user_id as a JSON number, not a string — Firestore's
+  // .doc() requires a string path, so coerce it here at the source.
+  return { ...entry, user_id: String(entry.user_id) } as ShortLivedTokenResponse;
 }
 
 export async function exchangeForLongLivedToken(shortLivedToken: string) {
@@ -52,7 +53,6 @@ export async function exchangeForLongLivedToken(shortLivedToken: string) {
 
   const res = await fetch(`${GRAPH_URL}/v21.0/access_token?${params.toString()}`);
   const data = await res.json();
-  console.log("Instagram long-lived token response:", JSON.stringify(data));
   if (!res.ok || data.error) {
     throw new Error(data.error?.message || "Instagram long-lived token exchange failed");
   }
@@ -77,10 +77,8 @@ async function fetchUsername(accessToken: string): Promise<string> {
   try {
     const res = await fetch(`${GRAPH_URL}/me?fields=username&access_token=${accessToken}`);
     const data = await res.json();
-    console.log("Instagram /me response:", JSON.stringify(data));
     return data?.username || "Connected account";
-  } catch (e) {
-    console.error("Instagram fetchUsername error:", e);
+  } catch {
     return "Connected account";
   }
 }
@@ -96,10 +94,8 @@ export type InstagramAccount = {
 // Each connected Instagram account gets its own doc, keyed by its
 // Instagram-scoped user ID, so multiple accounts can be connected at once.
 export async function saveInstagramAccount(shortLived: ShortLivedTokenResponse) {
-  console.log("saveInstagramAccount shortLived:", JSON.stringify(shortLived));
   const longLived = await exchangeForLongLivedToken(shortLived.access_token);
   const username = await fetchUsername(longLived.access_token);
-  console.log("saveInstagramAccount doc id:", shortLived.user_id);
 
   await adminDb
     .collection("instagramAccounts")

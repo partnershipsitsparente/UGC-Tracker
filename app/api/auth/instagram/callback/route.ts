@@ -21,7 +21,6 @@ export async function GET(req: NextRequest) {
     const shortLived = await exchangeCodeForToken(code, redirectUri);
     await saveInstagramAccount(shortLived);
   } catch (e) {
-    console.error("Instagram OAuth callback error:", e);
     const message = e instanceof Error ? e.message : "unknown_error";
     return NextResponse.redirect(`${req.nextUrl.origin}/videos?instagram_error=${encodeURIComponent(message)}`);
   }
