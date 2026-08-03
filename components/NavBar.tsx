@@ -25,6 +25,9 @@ export default function NavBar() {
             {link.label}
           </Link>
         ))}
+        <a href="/portfolio" target="_blank" rel="noopener noreferrer">
+          Portfolio ↗
+        </a>
         <button className="btn-danger" onClick={() => logout()} style={{ fontSize: 14 }}>
           Sign out
         </button>

@@ -1,0 +1,442 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap");
+
+.pf-root {
+  --pf-cream: #fff8e7;
+  --pf-ink: #1b1b1f;
+  --pf-ink-soft: rgba(27, 27, 31, 0.68);
+  --pf-sun: #ffc93c;
+  --pf-punch: #ff4d6d;
+  --pf-grass: #1fae5c;
+  --pf-paper: #ffffff;
+
+  font-family: "Inter", sans-serif;
+  color: var(--pf-ink);
+  background: var(--pf-cream);
+  overflow-x: hidden;
+}
+
+.pf-root * {
+  box-sizing: border-box;
+}
+
+.pf-root a {
+  color: inherit;
+}
+
+.pf-root :focus-visible {
+  outline: 3px solid var(--pf-ink);
+  outline-offset: 3px;
+}
+
+.pf-display {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+}
+
+.pf-mono {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* Section shells */
+.pf-section {
+  padding: 90px 24px;
+  position: relative;
+}
+
+.pf-bg-cream {
+  background: var(--pf-cream);
+}
+.pf-bg-sun {
+  background: var(--pf-sun);
+}
+.pf-bg-punch {
+  background: var(--pf-punch);
+  color: #fff8ee;
+}
+.pf-bg-grass {
+  background: var(--pf-grass);
+  color: #f2fff6;
+}
+
+.pf-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.pf-wave {
+  line-height: 0;
+  margin-top: -1px;
+}
+
+/* Sticker / tilt card — the signature interaction */
+.pf-sticker {
+  --tiltX: 0deg;
+  --tiltY: 0deg;
+  transform: perspective(900px) rotateX(var(--tiltX)) rotateY(var(--tiltY)) translateY(0) scale(1);
+  transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+  will-change: transform;
+}
+
+.pf-sticker:hover {
+  transform: perspective(900px) rotateX(var(--tiltX)) rotateY(var(--tiltY)) translateY(-8px) scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-sticker {
+    transition: none;
+  }
+  .pf-sticker:hover {
+    transform: none;
+  }
+}
+
+/* Hero */
+.pf-hero {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 56px;
+  align-items: center;
+  padding-top: 70px;
+}
+
+.pf-photo-frame {
+  aspect-ratio: 4 / 5;
+  background: var(--pf-paper);
+  border-radius: 24px;
+  border: 3px dashed rgba(27, 27, 31, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  box-shadow: 0 18px 40px -20px rgba(27, 27, 31, 0.35);
+}
+
+.pf-photo-frame .pf-hint {
+  color: var(--pf-ink-soft);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.pf-name {
+  font-size: clamp(40px, 6vw, 68px);
+}
+
+.pf-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 22px;
+  font-size: 15px;
+}
+
+.pf-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--pf-paper);
+  border: 1px solid rgba(27, 27, 31, 0.12);
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.pf-tagline {
+  font-size: 18px;
+  color: var(--pf-ink-soft);
+  margin-bottom: 26px;
+}
+
+.pf-social-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.pf-icon-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(27, 27, 31, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--pf-paper);
+}
+
+.pf-icon-circle:hover {
+  background: var(--pf-ink);
+  color: var(--pf-cream);
+  border-color: var(--pf-ink);
+}
+
+.pf-email-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--pf-ink);
+  color: var(--pf-cream) !important;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.pf-email-pill:hover {
+  background: var(--pf-punch);
+}
+
+/* Section headings */
+.pf-eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 10px;
+  opacity: 0.75;
+}
+
+.pf-heading {
+  font-size: clamp(30px, 4.2vw, 46px);
+  margin-bottom: 40px;
+}
+
+/* Partnerships grid */
+.pf-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.pf-logo-box {
+  aspect-ratio: 1;
+  background: var(--pf-paper);
+  border-radius: 18px;
+  border: 2px dashed rgba(27, 27, 31, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--pf-ink-soft);
+  font-size: 13px;
+  box-shadow: 0 14px 30px -18px rgba(27, 27, 31, 0.3);
+}
+
+.pf-logo-box .pf-plus {
+  font-family: "Fraunces", serif;
+  font-size: 26px;
+  color: var(--pf-ink);
+}
+
+/* Bio section */
+.pf-bio {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.pf-bio-body p {
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.pf-bio-body mark {
+  background: none;
+  color: var(--pf-punch);
+  font-weight: 600;
+}
+
+.pf-stat-list {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pf-stat-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.pf-stat-list strong {
+  font-family: "Fraunces", serif;
+  font-size: 20px;
+}
+
+.pf-bio-photo-wrap {
+  position: relative;
+}
+
+.pf-stat-pill {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--pf-ink);
+  color: var(--pf-cream);
+  border-radius: 999px;
+  padding: 10px 20px;
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Showcase sections */
+.pf-showcase {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.pf-profile-card {
+  background: var(--pf-ink);
+  color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.pf-profile-card .pf-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  margin-bottom: 12px;
+  border: 2px dashed rgba(255, 255, 255, 0.35);
+}
+
+.pf-profile-card .pf-handle {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.pf-profile-card .pf-profile-stats {
+  display: flex;
+  gap: 14px;
+  font-size: 13px;
+  opacity: 0.8;
+  margin: 10px 0;
+}
+
+.pf-profile-card .pf-bio-line {
+  font-size: 13px;
+  opacity: 0.75;
+  line-height: 1.5;
+}
+
+.pf-video-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.pf-video-card {
+  background: var(--pf-paper);
+  border-radius: 18px;
+  overflow: hidden;
+  color: var(--pf-ink);
+  box-shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.45);
+}
+
+.pf-video-thumb {
+  aspect-ratio: 9 / 16;
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  margin: 10px;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 14px;
+}
+
+.pf-play {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.pf-view-badge {
+  position: absolute;
+  margin: 18px 0 0 18px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.pf-video-meta {
+  padding: 0 14px 14px;
+  font-size: 13px;
+  color: var(--pf-ink-soft);
+}
+
+.pf-video-cta {
+  color: var(--pf-punch);
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.pf-showcase-cta {
+  margin-top: 30px;
+}
+
+/* Footer */
+.pf-footer {
+  text-align: center;
+  padding: 70px 24px;
+}
+
+.pf-footer .pf-display {
+  font-size: clamp(26px, 4vw, 40px);
+  margin-bottom: 18px;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .pf-hero,
+  .pf-bio,
+  .pf-showcase {
+    grid-template-columns: 1fr;
+  }
+  .pf-hero {
+    text-align: center;
+  }
+  .pf-badge-row,
+  .pf-social-row {
+    justify-content: center;
+  }
+  .pf-logo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pf-video-row {
+    grid-template-columns: 1fr;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+  .pf-section {
+    padding: 60px 20px;
+  }
+}

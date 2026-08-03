@@ -5,7 +5,7 @@ import { AuthProvider, useAuth } from "./AuthProvider";
 import NavBar from "./NavBar";
 import LoginForm from "./LoginForm";
 
-const PUBLIC_PATHS = ["/terms", "/privacy"];
+const PUBLIC_PATHS = ["/terms", "/privacy", "/portfolio"];
 
 function Gate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
