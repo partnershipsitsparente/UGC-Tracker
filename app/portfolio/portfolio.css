@@ -249,6 +249,19 @@
   color: var(--pf-ink);
 }
 
+.pf-logo-box.pf-has-image {
+  border-style: solid;
+  border-color: rgba(27, 27, 31, 0.1);
+  padding: 16px;
+}
+
+.pf-logo-box.pf-has-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
 /* Bio section */
 .pf-bio {
   display: grid;

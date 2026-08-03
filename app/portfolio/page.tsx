@@ -21,14 +21,14 @@ export default function PortfolioPage() {
         <TiltCard maxTilt={8}>
           <div className="pf-photo-frame pf-has-image">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/portfolio/hero.jpg" alt="[Your Name]" />
+            <img src="/portfolio/hero.jpg" alt="Kory Parente" />
           </div>
         </TiltCard>
 
         <div>
-          <h1 className="pf-display pf-name">[Your Name]</h1>
+          <h1 className="pf-display pf-name">Kory Parente</h1>
           <div className="pf-badge-row">
-            <span className="pf-badge">📍 [City] Based Creator</span>
+            <span className="pf-badge">📍 Chicago Based Creator, IL</span>
           </div>
           <p className="pf-tagline">[Your niche — e.g. Tech + Lifestyle Creator]</p>
 
@@ -42,13 +42,13 @@ export default function PortfolioPage() {
             <a className="pf-icon-circle" href="[your YouTube URL]" aria-label="YouTube">
               YT
             </a>
-            <a className="pf-icon-circle" href="mailto:[you@example.com]" aria-label="Email">
+            <a className="pf-icon-circle" href="mailto:partnerships.itsparente@gmail.com" aria-label="Email">
               @
             </a>
           </div>
 
-          <a className="pf-email-pill" href="mailto:[you@example.com]">
-            [you@example.com]
+          <a className="pf-email-pill" href="mailto:partnerships.itsparente@gmail.com">
+            partnerships.itsparente@gmail.com
           </a>
         </div>
       </section>
@@ -61,11 +61,23 @@ export default function PortfolioPage() {
           <div className="pf-eyebrow">Who I&apos;ve worked with</div>
           <h2 className="pf-display pf-heading">Notable Partnerships</h2>
           <div className="pf-logo-grid">
-            {Array.from({ length: 8 }).map((_, i) => (
+            {/* Real logos — add more of these above the placeholder loop as you get them */}
+            <TiltCard maxTilt={14}>
+              <div className="pf-logo-box pf-has-image">
+                <img src="/portfolio/logo1.png" alt="Brand 1" />
+              </div>
+            </TiltCard>
+            <TiltCard maxTilt={14}>
+              <div className="pf-logo-box pf-has-image">
+                <img src="/portfolio/logo2.png" alt="Brand 2" />
+              </div>
+            </TiltCard>
+
+            {Array.from({ length: 6 }).map((_, i) => (
               <TiltCard key={i} maxTilt={14}>
                 <div className="pf-logo-box">
                   <span className="pf-plus">+</span>
-                  <span>[Logo {i + 1}]</span>
+                  <span>[Logo {i + 3}]</span>
                 </div>
               </TiltCard>
             ))}
@@ -79,7 +91,7 @@ export default function PortfolioPage() {
       <section className="pf-section pf-bg-cream pf-bio pf-inner">
         <div className="pf-bio-body">
           <h2 className="pf-display" style={{ fontSize: "clamp(28px,4vw,42px)", marginBottom: 18 }}>
-            Hi, I&apos;m [Name]!
+            Hi, I&apos;m Kory!
           </h2>
           <p>
             [A couple sentences about who you are, where you&apos;re based, and what kind of content you make.
@@ -158,8 +170,8 @@ export default function PortfolioPage() {
             </div>
           </div>
 
-          <a className="pf-email-pill pf-showcase-cta" href="mailto:[you@example.com]">
-            [you@example.com]
+          <a className="pf-email-pill pf-showcase-cta" href="mailto:partnerships.itsparente@gmail.com">
+            partnerships.itsparente@gmail.com
           </a>
         </div>
       </section>
@@ -209,8 +221,8 @@ export default function PortfolioPage() {
             </div>
           </div>
 
-          <a className="pf-email-pill pf-showcase-cta" href="mailto:[you@example.com]">
-            [you@example.com]
+          <a className="pf-email-pill pf-showcase-cta" href="mailto:partnerships.itsparente@gmail.com">
+            partnerships.itsparente@gmail.com
           </a>
         </div>
       </section>
@@ -218,8 +230,8 @@ export default function PortfolioPage() {
       {/* ── FOOTER ───────────────────────────────────────── */}
       <footer className="pf-footer pf-bg-cream">
         <h2 className="pf-display">Let&apos;s work together.</h2>
-        <a className="pf-email-pill" href="mailto:[you@example.com]">
-          [you@example.com]
+        <a className="pf-email-pill" href="mailto:partnerships.itsparente@gmail.com">
+          partnerships.itsparente@gmail.com
         </a>
       </footer>
     </div>
