@@ -19,12 +19,9 @@ export default function PortfolioPage() {
       {/* ── HERO ─────────────────────────────────────────── */}
       <section className="pf-section pf-bg-cream pf-hero pf-inner">
         <TiltCard maxTilt={8}>
-          <div className="pf-photo-frame">
-            <span className="pf-hint">
-              [Add your photo here]
-              <br />
-              4:5 portrait works best
-            </span>
+          <div className="pf-photo-frame pf-has-image">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/portfolio/hero.jpg" alt="[Your Name]" />
           </div>
         </TiltCard>
 
