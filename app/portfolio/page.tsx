@@ -94,27 +94,29 @@ export default function PortfolioPage() {
             Hi, I&apos;m Kory!
           </h2>
           <p>
-            [A couple sentences about who you are, where you&apos;re based, and what kind of content you make.
-            e.g. I&apos;m a <mark>[city]-based</mark> creator making <mark>[niche]</mark> content.]
+            I&apos;m a <mark>Chicago-based</mark> content creator and day trader. I&apos;ve generated 2 million+
+            organic views and 3,500+ followers on my personal account, with partnerships varying from bootstrapped
+            startups, high-profile UGC programs, and billion-dollar companies.
           </p>
           <p>
-            [What you&apos;ve done — brand types you&apos;ve worked with, your specialty, what makes your content
-            perform.]
+            My primary goal is to creatively apply <mark>virality</mark>, <mark>customer conversions</mark>, and{" "}
+            <mark>retention</mark> to your brand and product.
           </p>
           <ul className="pf-stat-list">
             <li>
-              <strong>[00]M+</strong> organic views
+              <strong>2</strong>M+ organic views
             </li>
             <li>
-              <strong>[00]K+</strong> followers across accounts
+              <strong>3,500</strong>+ followers on my personal account
             </li>
           </ul>
         </div>
 
         <div className="pf-bio-photo-wrap">
           <TiltCard maxTilt={8}>
-            <div className="pf-photo-frame" style={{ aspectRatio: "1" }}>
-              <span className="pf-hint">[Second photo]</span>
+            <div className="pf-photo-frame pf-has-image" style={{ aspectRatio: "1" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/portfolio/bio-photo.jpg" alt="Kory Parente" />
             </div>
           </TiltCard>
           <div className="pf-stat-pill">
