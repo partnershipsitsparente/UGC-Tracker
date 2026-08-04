@@ -120,9 +120,9 @@ export default function PortfolioPage() {
             </div>
           </TiltCard>
           <div className="pf-stat-pill">
-            <span>[000] posts</span>
-            <span>[00]K followers</span>
-            <span>[0,000] following</span>
+            <span>[500+] posts</span>
+            <span>[3.5]K followers</span>
+            <span>[42] following</span>
           </div>
         </div>
       </section>
