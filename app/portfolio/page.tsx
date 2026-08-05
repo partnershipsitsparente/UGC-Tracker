@@ -120,9 +120,9 @@ export default function PortfolioPage() {
             </div>
           </TiltCard>
           <div className="pf-stat-pill">
-            <span>[500+] posts</span>
-            <span>[3.5]K followers</span>
-            <span>[42] following</span>
+            <span>[000] posts</span>
+            <span>[00]K followers</span>
+            <span>[0,000] following</span>
           </div>
         </div>
       </section>
@@ -132,43 +132,77 @@ export default function PortfolioPage() {
       {/* ── SHOWCASE 1 (duplicate this whole <section> block for more) ── */}
       <section className="pf-section pf-bg-punch">
         <div className="pf-inner">
-          <div className="pf-eyebrow pf-mono">[00]M+ Views</div>
+          <div className="pf-eyebrow pf-mono">178.3K+ Likes</div>
           <h2 className="pf-display pf-heading">Personal Brand</h2>
 
           <div className="pf-showcase">
             <TiltCard maxTilt={6}>
               <div className="pf-profile-card">
                 <div className="pf-avatar" />
-                <div className="pf-handle">@[yourhandle]</div>
+                <div className="pf-handle">@itsparente</div>
                 <div className="pf-profile-stats">
-                  <span>[000] posts</span>
-                  <span>[00]K followers</span>
-                  <span>[0,000] following</span>
+                  <span>3,516 followers</span>
+                  <span>34 following</span>
+                  <span>178.3K likes</span>
                 </div>
-                <div className="pf-bio-line">[Short profile bio line, matches your real Instagram/TikTok bio]</div>
+                <div className="pf-bio-line">IFVG | Futures Trader · Live Daily in Discord</div>
               </div>
             </TiltCard>
 
             <div className="pf-video-row">
-              {[1, 2, 3].map((n) => (
-                <TiltCard key={n} maxTilt={12}>
-                  <div className="pf-video-card">
-                    <div style={{ position: "relative" }}>
-                      <span className="pf-view-badge">[0.0]M views</span>
-                      <div className="pf-video-thumb">
-                        <div className="pf-play">▶</div>
-                      </div>
-                    </div>
-                    <div className="pf-video-meta">
-                      [Video {n} caption]
-                      <br />
-                      <a className="pf-video-cta" href="[link to post]">
-                        View on Instagram →
-                      </a>
+              <TiltCard maxTilt={12}>
+                <div className="pf-video-card">
+                  <div style={{ position: "relative" }}>
+                    <span className="pf-view-badge">148K views</span>
+                    <div className="pf-video-thumb">
+                      <div className="pf-play">▶</div>
                     </div>
                   </div>
-                </TiltCard>
-              ))}
+                  <div className="pf-video-meta">
+                    Explaining my 80% winrate model
+                    <br />
+                    <a className="pf-video-cta" href="https://www.tiktok.com/@itsparente">
+                      View on TikTok →
+                    </a>
+                  </div>
+                </div>
+              </TiltCard>
+
+              <TiltCard maxTilt={12}>
+                <div className="pf-video-card">
+                  <div style={{ position: "relative" }}>
+                    <span className="pf-view-badge">5,613 views</span>
+                    <div className="pf-video-thumb">
+                      <div className="pf-play">▶</div>
+                    </div>
+                  </div>
+                  <div className="pf-video-meta">
+                    Backtesting the 9:30 Judas
+                    <br />
+                    <a className="pf-video-cta" href="https://www.tiktok.com/@itsparente">
+                      View on TikTok →
+                    </a>
+                  </div>
+                </div>
+              </TiltCard>
+
+              <TiltCard maxTilt={12}>
+                <div className="pf-video-card">
+                  <div style={{ position: "relative" }}>
+                    <span className="pf-view-badge">1,068 views</span>
+                    <div className="pf-video-thumb">
+                      <div className="pf-play">▶</div>
+                    </div>
+                  </div>
+                  <div className="pf-video-meta">
+                    When u go to check ur notifications and it&apos;s alpha telling u to reset ur account
+                    <br />
+                    <a className="pf-video-cta" href="https://www.tiktok.com/@itsparente">
+                      View on TikTok →
+                    </a>
+                  </div>
+                </div>
+              </TiltCard>
             </div>
           </div>
 
