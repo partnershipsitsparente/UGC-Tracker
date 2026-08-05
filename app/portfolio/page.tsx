@@ -138,7 +138,10 @@ export default function PortfolioPage() {
           <div className="pf-showcase">
             <TiltCard maxTilt={6}>
               <div className="pf-profile-card">
-                <div className="pf-avatar" />
+                <div className="pf-avatar pf-has-image">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/portfolio/avatar.jpg" alt="Kory Parente" />
+                </div>
                 <div className="pf-handle">@itsparente</div>
                 <div className="pf-profile-stats">
                   <span>3,516 followers</span>
@@ -153,15 +156,22 @@ export default function PortfolioPage() {
               <TiltCard maxTilt={12}>
                 <div className="pf-video-card">
                   <div style={{ position: "relative" }}>
-                    <span className="pf-view-badge">148K views</span>
-                    <div className="pf-video-thumb">
+                    <span className="pf-view-badge">150.3K views</span>
+                    <div className="pf-video-thumb pf-has-image">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/portfolio/video1-thumb.jpg" alt="" />
                       <div className="pf-play">▶</div>
                     </div>
                   </div>
                   <div className="pf-video-meta">
-                    Explaining my 80% winrate model
+                    Explaining 80% winrate model
                     <br />
-                    <a className="pf-video-cta" href="https://www.tiktok.com/@itsparente">
+                    <a
+                      className="pf-video-cta"
+                      href="https://www.tiktok.com/@itsparente/video/7654652175271972110"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       View on TikTok →
                     </a>
                   </div>
@@ -171,15 +181,22 @@ export default function PortfolioPage() {
               <TiltCard maxTilt={12}>
                 <div className="pf-video-card">
                   <div style={{ position: "relative" }}>
-                    <span className="pf-view-badge">5,613 views</span>
-                    <div className="pf-video-thumb">
+                    <span className="pf-view-badge">78.5K views</span>
+                    <div className="pf-video-thumb pf-has-image">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/portfolio/video2-thumb.jpg" alt="" />
                       <div className="pf-play">▶</div>
                     </div>
                   </div>
                   <div className="pf-video-meta">
-                    Backtesting the 9:30 Judas
+                    How it genuinely feels to not be able to trade till after new years
                     <br />
-                    <a className="pf-video-cta" href="https://www.tiktok.com/@itsparente">
+                    <a
+                      className="pf-video-cta"
+                      href="https://www.tiktok.com/@itsparente/video/7588610543271841037"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       View on TikTok →
                     </a>
                   </div>
@@ -189,15 +206,22 @@ export default function PortfolioPage() {
               <TiltCard maxTilt={12}>
                 <div className="pf-video-card">
                   <div style={{ position: "relative" }}>
-                    <span className="pf-view-badge">1,068 views</span>
-                    <div className="pf-video-thumb">
+                    <span className="pf-view-badge">6,169 views</span>
+                    <div className="pf-video-thumb pf-has-image">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/portfolio/video3-thumb.jpg" alt="" />
                       <div className="pf-play">▶</div>
                     </div>
                   </div>
                   <div className="pf-video-meta">
-                    When u go to check ur notifications and it&apos;s alpha telling u to reset ur account
+                    POV u got a call from the propfirm about ur passed eval
                     <br />
-                    <a className="pf-video-cta" href="https://www.tiktok.com/@itsparente">
+                    <a
+                      className="pf-video-cta"
+                      href="https://www.tiktok.com/@itsparente/video/7595991596294753591"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       View on TikTok →
                     </a>
                   </div>

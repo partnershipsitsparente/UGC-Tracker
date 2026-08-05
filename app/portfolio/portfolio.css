@@ -345,6 +345,18 @@
   background: rgba(255, 255, 255, 0.15);
   margin-bottom: 12px;
   border: 2px dashed rgba(255, 255, 255, 0.35);
+  overflow: hidden;
+}
+
+.pf-profile-card .pf-avatar.pf-has-image {
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.pf-profile-card .pf-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .pf-profile-card .pf-handle {
@@ -390,6 +402,27 @@
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 14px;
+  overflow: hidden;
+  position: relative;
+}
+
+.pf-video-thumb.pf-has-image {
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.pf-video-thumb.pf-has-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.pf-video-thumb .pf-play {
+  position: relative;
+  z-index: 1;
 }
 
 .pf-play {
