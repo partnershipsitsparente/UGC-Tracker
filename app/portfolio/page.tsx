@@ -61,7 +61,7 @@ export default function PortfolioPage() {
           <div className="pf-eyebrow">Who I&apos;ve worked with</div>
           <h2 className="pf-display pf-heading">Notable Partnerships</h2>
           <div className="pf-logo-grid">
-            {/* Real logos — add more of these above the placeholder loop as you get them */}
+            {/* Real logos — add more <TiltCard> blocks like these two as you land new partners */}
             <TiltCard maxTilt={14}>
               <div className="pf-logo-box pf-has-image">
                 <img src="/portfolio/logo1.png" alt="Brand 1" />
@@ -73,14 +73,12 @@ export default function PortfolioPage() {
               </div>
             </TiltCard>
 
-            {Array.from({ length: 6 }).map((_, i) => (
-              <TiltCard key={i} maxTilt={14}>
-                <div className="pf-logo-box">
-                  <span className="pf-plus">+</span>
-                  <span>[Logo {i + 3}]</span>
-                </div>
-              </TiltCard>
-            ))}
+            <TiltCard maxTilt={14}>
+              <div className="pf-logo-box pf-next-brand">
+                <span className="pf-plus">+</span>
+                <span>Your brand here next ;)</span>
+              </div>
+            </TiltCard>
           </div>
         </div>
       </section>

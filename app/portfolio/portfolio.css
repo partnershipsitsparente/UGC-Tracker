@@ -262,6 +262,18 @@
   border-radius: 10px;
 }
 
+.pf-logo-box.pf-next-brand {
+  border-color: rgba(27, 27, 31, 0.35);
+  background: transparent;
+  box-shadow: none;
+}
+
+.pf-logo-box.pf-next-brand span:last-child {
+  font-style: italic;
+  text-align: center;
+  padding: 0 10px;
+}
+
 /* Bio section */
 .pf-bio {
   display: grid;
