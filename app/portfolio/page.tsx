@@ -18,12 +18,15 @@ export default function PortfolioPage() {
     <div className="pf-root">
       {/* ── HERO ─────────────────────────────────────────── */}
       <section className="pf-section pf-bg-cream pf-hero pf-inner">
-        <TiltCard maxTilt={8}>
-          <div className="pf-photo-frame pf-has-image">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/portfolio/hero.jpg" alt="Kory Parente" />
-          </div>
-        </TiltCard>
+        <div className="pf-hero-photo-wrap">
+          <span className="pf-hero-aura" aria-hidden="true" />
+          <TiltCard maxTilt={8}>
+            <div className="pf-photo-frame pf-has-image">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/portfolio/hero.jpg" alt="Kory Parente" />
+            </div>
+          </TiltCard>
+        </div>
 
         <div>
           <h1 className="pf-display pf-name">Kory Parente</h1>
